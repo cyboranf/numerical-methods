@@ -11,6 +11,7 @@ public class BisectionMain {
 
     }
     public static String bisection(Function<Double, Double> f, double a, double b, double tol, int maxIter) {
+
         /*
          * Parameters:
          *   f: A function to find the root of.
