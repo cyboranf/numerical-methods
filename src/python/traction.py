@@ -18,3 +18,4 @@ for i in range(n):
 s = (s + (f(xp) + f(xk) / 2)) * dx
 
 print(s)
+# ss
