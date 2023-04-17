@@ -1,45 +1,35 @@
+package java;
+
 import java.util.function.Function;
 
 public class BisectionMain {
-    public static void main(String[] args) {
-        Function<Double, Double> f = x -> (x+1)*Math.pow((x-1),4);
-        double a = -1.5;
-        double b=-0.75;
-        double tolerance=0.1;
-        int maxIter=100;
-        System.out.println(bisection(f,a,b,tolerance,maxIter));
-
+    static double f(double x){  // wzór funkcji
+        return Math.pow(x, 2) + 2*x - 1;
     }
-    public static String bisection(Function<Double, Double> f, double a, double b, double tol, int maxIter) {
 
-        /*
-         * Parameters:
-         *   f: A function to find the root of.
-         *   a: The lower bound of the interval.
-         *   b: The upper bound of the interval.
-         *   tol: The tolerance for the root.
-         *   maxIter: The maximum number of iterations to perform.
-         *
-         *
-         * Returns:
-         *   double: The estimated root of the function.
-         */
+    public static void main(String[] args) {
 
-        if (f.apply(a) * f.apply(b) > 0) {
-            throw new IllegalArgumentException("f(a) and f(b) must have opposite signs for bisection method to work.");
+        double dok = 0.00000000001;  // epsilon
+        double a = -2;  // a, b - skrajne przypadki zbioru
+        double b = 1;
+        double c = (a + b)/2;
+
+        if(f(a)*f(b)>0){
+            System.out.println("Niepoprawne dane");
         }
-
-        for (int i = 0; i < maxIter; i++) {
-            double c = (a + b) / 2;
-            if (Math.abs(f.apply(c)) < tol) {
-                return "Root: "+c;
-            } else if (f.apply(a) * f.apply(c) < 0) {
-                b = c;
-            } else {
-                a = c;
+        else if(f(c)==0){
+            System.out.println("Pierwiastkiem rownania jest " + c);
+        }
+        else {
+            while (Math.abs(f(c)) > dok) {
+                c = (a + b) / 2;
+                if (f(c) * f(a) < 0) {
+                    b = c;
+                } else {
+                    a = c;
+                }
             }
+            System.out.println("Pierwiastkiem rownania jest " + c);
         }
-
-        throw new RuntimeException("Bisection method did not converge within the given maximum number of iterations.");
     }
 }
