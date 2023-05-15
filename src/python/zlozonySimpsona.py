@@ -1,5 +1,6 @@
 from sympy import *
 
+
 # Funkcja1: -1 całka 1 x^2 dx, n=5; Wynik: całka = 0.75
 
 # Wzór trapezwów złożony
@@ -38,6 +39,12 @@ def trapez_zlozony():
 
     print(f"Całka = {calka}")
     print(f"R = {R}")
+
+
+
+
+
+
 
 # trapez_zlozony()
 
